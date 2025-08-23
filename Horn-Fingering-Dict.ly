@@ -41,6 +41,7 @@ fingerAB = \markup \abs-fontsize #6 \finger 12
 fingerBC = \markup \abs-fontsize #6 \finger 23
 fingerAC = \markup \abs-fontsize #6 \finger 13
 fingerABC = \markup \abs-fontsize #6 \finger 123
+fingerC = \markup \abs-fontsize #6 \finger 3
 fingerTO = \markup
 \override #`(direction . ,UP)
 \override #'(baseline-skip . 2.0)
@@ -90,6 +91,13 @@ fingerTABC = \markup
   \general-align #X #CENTER \fingerABC
   \general-align #X #CENTER \fingerT
 }
+fingerTC = \markup
+\override #`(direction . ,UP)
+\override #'(baseline-skip . 2.0)
+\dir-column {
+  \general-align #X #CENTER \fingerC
+  \general-align #X #CENTER \fingerT
+}
 fingerLO = \markup
 \override #'(baseline-skip . 0.9)
 \column {
@@ -130,6 +138,12 @@ fingerLABC = \markup
 \override #'(baseline-skip . 0.9)
 \column {
   \general-align #X #CENTER \fingerABC
+  \general-align #X #CENTER \fingerL
+}
+fingerLC = \markup
+\override #'(baseline-skip . 0.9)
+\column {
+  \general-align #X #CENTER \fingerC
   \general-align #X #CENTER \fingerL
 }
 
@@ -234,8 +248,8 @@ tuningFlatFifty = \markup
 \markup \null
 \markup \wordwrap {
   Fingerings for each pitch are arranged from shortest to longest tubing length.
-  Fingerings \fingerTAC and \fingerLAC are assigned a bias of 10 cents sharp,
-  and likewise, \fingerTABC and \fingerLABC are biased 20 cents sharp.
+  Fingerings \concat { \fingerC , } \fingerAC and \fingerABC are assigned a bias of
+  5 cents flat, 10 cents sharp and 20 cents sharp, respectively.
   Uncommon fingerings are shown in black.
 }
 \score {
@@ -275,10 +289,12 @@ tuningFlatFifty = \markup
           <e'-15>4*2
           <e-16>4*2
           <e,-9>4*2
+          <e-9>4*2
           <e-10 e,-5>4*2
           \bar "!"
           <e-10 e,-5>2
           <e-12 e,-6>2
+          <e-12 e,-6>4*2
           <e-14 e,-7>4*2
           \bar "|"
 
@@ -294,6 +310,7 @@ tuningFlatFifty = \markup
 
           <d'-15>4*2
           <d-16>4*2
+          <d-16 d,-8 d,-4>4*2
           \bar "!"
           <d,-9>2
           <d-10>4*2
@@ -301,10 +318,12 @@ tuningFlatFifty = \markup
           \bar "|"
 
           <cis'-15>4*2
+          <cis-15>4*2
           <cis-16>4*2
           \bar "!"
           <cis,-9>2
           <cis-10>4*2
+          <cis-10 cis,-5>4*2
           <cis-12 cis,-6>4*2
           \bar "|"
 
@@ -324,6 +343,7 @@ tuningFlatFifty = \markup
           <b-15>4*2
           <b-16>4*2
           <b,-9>4*2
+          <b-9>4*2
           <b-10 b,-5>4*2
           \bar "|"
 
@@ -339,9 +359,11 @@ tuningFlatFifty = \markup
 
           <a'-10 a,-5>2
           <a-12 a,-6 a,-3>2
+          <a-12 a,-6 a,-3>4*2
           <a-14 a,-7>4*2
           \bar "!"
           <a-15>4*2
+          <a-16>4*2
           <a-16>4*2
           <a,-9>4*2
           \bar "|"
@@ -350,6 +372,7 @@ tuningFlatFifty = \markup
           <aes'-10 aes,-5>2
           <aes-12 aes,-6 aes,-3>2
           \bar "!"
+          <aes-15>4*2
           <aes-15>4*2
           <aes-16>4*2
           \bar "|"
@@ -364,6 +387,7 @@ tuningFlatFifty = \markup
           \bar "|"
 
           <fis-9>2
+          <fis-10>4*2
           <fis-10>4*2
           <fis-12 fis,-6 fis,-3>4*2
           \bar "!"
@@ -384,17 +408,17 @@ tuningFlatFifty = \markup
 
           \clef treble
           s2 s s s s s
-          s2 <e-8 e,-4> s s s s s
+          s2 <e-8 e,-4> s s s s s s s
           s2 <ees-8 ees,-4> s s s s
-          s2 <d-8 d,-4> s <d,-5> s
-          s2 <cis'-8 cis,-4> s <cis,-5> s
+          s2 <d-8 d,-4> s s <d,-5> s
+          s2 s <cis'-8 cis,-4> s <cis,-5> s s
           s2 s s <c'-8 c,-4> s s
-          s2 s s <b-8 b,-4> s s
+          s2 s s <b-8 b,-4> s s s
           s2 s s s <bes-8 bes,-4> s s
-          s2 s s s <a-8 a,-4> s
-          s2 s s <aes-8 aes,-4>
+          s2 s s s s <a-8 a,-4> <a-8 a,-4>4*2 s
+          s2 s s s <aes-8 aes,-4>
           s2 <g-5> s s s s
-          s2 <fis-5> s s s s
+          s2 <fis-5> <fis-5>4*2 s2 s s s
         }
       >>
       \new Lyrics = "fingering"
@@ -412,9 +436,11 @@ tuningFlatFifty = \markup
           \fingerTO
           \fingerTB
           \fingerTAB
+          \fingerTC
           \fingerTAC
           \fingerLO
           \fingerLAB
+          \fingerLC
           \fingerLABC
 
           % ees
@@ -428,15 +454,18 @@ tuningFlatFifty = \markup
           % d
           \fingerTA
           \fingerTAB
+          \fingerTC
           \fingerLO
           \fingerLA
           \fingerLAC
 
           % cis
           \fingerTAB
+          \fingerTC
           \fingerTBC
           \fingerLB
           \fingerLAB
+          \fingerLC
           \fingerLABC
 
           % c
@@ -453,6 +482,7 @@ tuningFlatFifty = \markup
           \fingerLO
           \fingerLB
           \fingerLAB
+          \fingerLC
           \fingerLAC
 
           % bes
@@ -467,15 +497,18 @@ tuningFlatFifty = \markup
           % a
           \fingerTO
           \fingerTAB
+          \fingerTC
           \fingerTABC
           \fingerLA
           \fingerLAB
+          \fingerLC
           \fingerLAC
 
           % aes
           \fingerTB
           \fingerTBC
           \fingerLAB
+          \fingerLC
           \fingerLBC
 
           % g
@@ -489,6 +522,7 @@ tuningFlatFifty = \markup
           % fis
           \fingerTB
           \fingerTAB
+          \fingerTC
           \fingerTABC
           \fingerLB
           \fingerLAC
@@ -512,9 +546,11 @@ tuningFlatFifty = \markup
           \tuningFlatTen
           \tuningZero
           \tuningSharpFive
+          \tuningZero
           \tuningFlatFive
           \tuningFlatFifteen
           \tuningZero
+          \tuningFlatFive
           \tuningFlatTen
 
           % ees
@@ -528,15 +564,18 @@ tuningFlatFifty = \markup
           % d
           \tuningFlatTen
           \tuningZero
+          \tuningFlatFive
           \tuningSharpFive
           \tuningFlatFifteen
           \tuningSharpTen
 
           % cis
           \tuningFlatTen
+          \tuningFlatFifteen
           \tuningZero
           \tuningSharpFive
           \tuningFlatFifteen
+          \tuningFlatTwenty
           \tuningSharpTwenty
 
           % c
@@ -553,6 +592,7 @@ tuningFlatFifty = \markup
           \tuningFlatTen
           \tuningZero
           \tuningSharpFive
+          \tuningZero
           \tuningFlatFive
 
           % bes
@@ -567,15 +607,18 @@ tuningFlatFifty = \markup
           % a 
           \tuningFlatFifteen
           \tuningZero
+          \tuningFlatFive
           \tuningFlatTen
           \tuningFlatTen
           \tuningZero
+          \tuningFlatFive
           \tuningSharpFifteen
 
           % aes
           \tuningFlatFifteen
           \tuningZero
           \tuningFlatTen
+          \tuningFlatFifteen
           \tuningZero
 
           % g
@@ -589,6 +632,7 @@ tuningFlatFifty = \markup
           % fis
           \tuningSharpFive
           \tuningFlatFifteen
+          \tuningFlatTwenty
           \tuningSharpTwenty
           \tuningZero
           \tuningZero
@@ -609,17 +653,17 @@ tuningFlatFifty = \markup
 
           \clef bass
           <f-2 f,-1>2 s s <f-3> s s
-          s2 <e-2 e,-1> s s s <e-3> s
+          s2 <e-2 e,-1> s s s s <e-3> <e-3>4*2 s2
           s2 <ees-2> s s s <ees-3>
-          s2 <d-2> s s <d-3>
-          s2 <cis-2> s s <cis-3>
+          s2 <d-2> <d-2 d,-1>4*2 s2 s <d-3>
+          s2 s <cis-2> s s s <cis-3>
           s2 s <c-2 c,-1>4*2 <c-2>2 s s
-          s2 s s <b-2> s s
+          s2 s s <b-2> s s s
           s2 s s s <bes-2> s s
-          s2 s s s <a-2> s
-          s2 s s <aes-2>
+          s2 s s s s <a-2> <a-2>4*2 s2
+          s2 s s s <aes-2>
           s2 s s s s <g-2>
-          s2 s s s s <fis-2>
+          s2 s s s s s <fis-2>
         }
         \new Voice = "fingeringd" \relative c, {
           \accidentalStyle Score.forget
@@ -633,17 +677,17 @@ tuningFlatFifty = \markup
 
           \clef bass
           s2 s s s s s
-          s2 s s s s s s
+          s2 s s s s s s s s
           s2 <ees-1>4*2 s2 s s s
-          s2 <d-1>4*2 s2 s s
-          s2 <cis-1>4*2 s2 s s
+          s2 <d-1>4*2 s2 s s s
+          s2 s <cis-1>4*2 s2 s s s
           s2 s s <c-1>4*2 s2 s
-          s2 s s <b-1>4*2 s2 s
+          s2 s s <b-1>4*2 s2 s s
           s2 s s s <bes-1>4*2 s2 s
-          s2 s s s <a-1>4*2 s2
-          s2 s s <aes-1>4*2
+          s2 s s s s <a-1>4*2 <a-1>4*2 s2
+          s2 s s s <aes-1>4*2
           s2 s s s s <g-1>4*2
-          s2 s s s s <fis-1>4*2
+          s2 s s s s s <fis-1>4*2
         }
       >>
     >>
