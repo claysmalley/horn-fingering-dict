@@ -32,7 +32,8 @@ centermarkup = {
   (ly:self-alignment-interface::x-aligned-on-self g)))
 }
 
-fingerT = \markup \abs-fontsize #6 \bold T
+fingerT = \markup \abs-fontsize #8 \musicglyph "arrowheads.open.11"
+fingerL = \markup \abs-fontsize #8 \musicglyph "arrowheads.open.1M1"
 fingerO = \markup \abs-fontsize #6 \slashed-digit #0
 fingerB = \markup \abs-fontsize #6 \finger 2
 fingerA = \markup \abs-fontsize #6 \finger 1
@@ -42,52 +43,94 @@ fingerAC = \markup \abs-fontsize #6 \finger 13
 fingerABC = \markup \abs-fontsize #6 \finger 123
 fingerTO = \markup
 \override #`(direction . ,UP)
-\override #'(baseline-skip . 1.4)
+\override #'(baseline-skip . 2.0)
 \dir-column {
   \general-align #X #CENTER \fingerO
   \general-align #X #CENTER \fingerT
 }
 fingerTB = \markup
 \override #`(direction . ,UP)
-\override #'(baseline-skip . 1.4)
+\override #'(baseline-skip . 2.0)
 \dir-column {
   \general-align #X #CENTER \fingerB
   \general-align #X #CENTER \fingerT
 }
 fingerTA = \markup
 \override #`(direction . ,UP)
-\override #'(baseline-skip . 1.4)
+\override #'(baseline-skip . 2.0)
 \dir-column {
   \general-align #X #CENTER \fingerA
   \general-align #X #CENTER \fingerT
 }
 fingerTAB = \markup
 \override #`(direction . ,UP)
-\override #'(baseline-skip . 1.4)
+\override #'(baseline-skip . 2.0)
 \dir-column {
   \general-align #X #CENTER \fingerAB
   \general-align #X #CENTER \fingerT
 }
 fingerTBC = \markup
 \override #`(direction . ,UP)
-\override #'(baseline-skip . 1.4)
+\override #'(baseline-skip . 2.0)
 \dir-column {
   \general-align #X #CENTER \fingerBC
   \general-align #X #CENTER \fingerT
 }
 fingerTAC = \markup
 \override #`(direction . ,UP)
-\override #'(baseline-skip . 1.4)
+\override #'(baseline-skip . 2.0)
 \dir-column {
   \general-align #X #CENTER \fingerAC
   \general-align #X #CENTER \fingerT
 }
 fingerTABC = \markup
 \override #`(direction . ,UP)
-\override #'(baseline-skip . 1.4)
+\override #'(baseline-skip . 2.0)
 \dir-column {
   \general-align #X #CENTER \fingerABC
   \general-align #X #CENTER \fingerT
+}
+fingerLO = \markup
+\override #'(baseline-skip . 0.9)
+\column {
+  \general-align #X #CENTER \fingerO
+  \general-align #X #CENTER \fingerL
+}
+fingerLB = \markup
+\override #'(baseline-skip . 0.9)
+\column {
+  \general-align #X #CENTER \fingerB
+  \general-align #X #CENTER \fingerL
+}
+fingerLA = \markup
+\override #'(baseline-skip . 0.9)
+\column {
+  \general-align #X #CENTER \fingerA
+  \general-align #X #CENTER \fingerL
+}
+fingerLAB = \markup
+\override #'(baseline-skip . 0.9)
+\column {
+  \general-align #X #CENTER \fingerAB
+  \general-align #X #CENTER \fingerL
+}
+fingerLBC = \markup
+\override #'(baseline-skip . 0.9)
+\column {
+  \general-align #X #CENTER \fingerBC
+  \general-align #X #CENTER \fingerL
+}
+fingerLAC = \markup
+\override #'(baseline-skip . 0.9)
+\column {
+  \general-align #X #CENTER \fingerAC
+  \general-align #X #CENTER \fingerL
+}
+fingerLABC = \markup
+\override #'(baseline-skip . 0.9)
+\column {
+  \general-align #X #CENTER \fingerABC
+  \general-align #X #CENTER \fingerL
 }
 
 tuningZero = \markup
@@ -191,8 +234,8 @@ tuningFlatFifty = \markup
 \markup \null
 \markup \wordwrap {
   Fingerings for each pitch are arranged from shortest to longest tubing length.
-  Fingerings \fingerAC and \fingerTAC are assigned a bias of 10 cents sharp,
-  and likewise, \fingerABC and \fingerTABC are biased 20 cents sharp.
+  Fingerings \fingerTAC and \fingerLAC are assigned a bias of 10 cents sharp,
+  and likewise, \fingerTABC and \fingerLABC are biased 20 cents sharp.
   Uncommon fingerings are shown in black.
 }
 \score {
@@ -361,95 +404,95 @@ tuningFlatFifty = \markup
           \fingerTO
           \fingerTA
           \fingerTBC
-          \fingerA
-          \fingerAC
-          \fingerABC
+          \fingerLA
+          \fingerLAC
+          \fingerLABC
 
           % e
           \fingerTO
           \fingerTB
           \fingerTAB
           \fingerTAC
-          \fingerO
-          \fingerAB
-          \fingerABC
+          \fingerLO
+          \fingerLAB
+          \fingerLABC
 
           % ees
           \fingerTB
           \fingerTA
           \fingerTBC
           \fingerTABC
-          \fingerB
-          \fingerBC
+          \fingerLB
+          \fingerLBC
 
           % d
           \fingerTA
           \fingerTAB
-          \fingerO
-          \fingerA
-          \fingerAC
+          \fingerLO
+          \fingerLA
+          \fingerLAC
 
           % cis
           \fingerTAB
           \fingerTBC
-          \fingerB
-          \fingerAB
-          \fingerABC
+          \fingerLB
+          \fingerLAB
+          \fingerLABC
 
           % c
           \fingerTO
           \fingerTBC
           \fingerTAC
-          \fingerO
-          \fingerA
-          \fingerBC
+          \fingerLO
+          \fingerLA
+          \fingerLBC
 
           % b
           \fingerTB
           \fingerTAC
-          \fingerO
-          \fingerB
-          \fingerAB
-          \fingerAC
+          \fingerLO
+          \fingerLB
+          \fingerLAB
+          \fingerLAC
 
           % bes
           \fingerTA
           \fingerTAC
           \fingerTABC
-          \fingerB
-          \fingerA
-          \fingerBC
-          \fingerABC
+          \fingerLB
+          \fingerLA
+          \fingerLBC
+          \fingerLABC
 
           % a
           \fingerTO
           \fingerTAB
           \fingerTABC
-          \fingerA
-          \fingerAB
-          \fingerAC
+          \fingerLA
+          \fingerLAB
+          \fingerLAC
 
           % aes
           \fingerTB
           \fingerTBC
-          \fingerAB
-          \fingerBC
+          \fingerLAB
+          \fingerLBC
 
           % g
           \fingerTO
           \fingerTA
           \fingerTAC
-          \fingerO
-          \fingerBC
-          \fingerAC
+          \fingerLO
+          \fingerLBC
+          \fingerLAC
 
           % fis
           \fingerTB
           \fingerTAB
           \fingerTABC
-          \fingerB
-          \fingerAC
-          \fingerABC
+          \fingerLB
+          \fingerLAC
+          \fingerLABC
         }
       }
       \new Lyrics = "tuning"
