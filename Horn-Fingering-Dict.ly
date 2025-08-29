@@ -32,8 +32,9 @@ centermarkup = {
   (ly:self-alignment-interface::x-aligned-on-self g)))
 }
 
-fingerC = \markup \abs-fontsize #6 \finger " 3 "
+fingerC = \markup \abs-fontsize #6 \finger 3
 fingerAC = \markup \abs-fontsize #6 \finger 13
+fingerBC = \markup \abs-fontsize #6 \finger 23
 fingerABC = \markup \abs-fontsize #6 \finger 123
 fingerTO = \markup \overtie \abs-fontsize #6 \slashed-digit #0
 fingerTB = \markup \overtie \abs-fontsize #6 \finger " 2 "
@@ -128,33 +129,30 @@ tuningFlatTwenty = \markup
   \flat
   ".20"
 }
-tuningFlatThirty = \markup
+tuningFlatTwentyFive = \markup
 \bold
 \abs-fontsize #9
 \concat {
   \super
   \flat
-  ".30"
-}
-tuningFlatFifty = \markup
-\bold
-\abs-fontsize #9
-\concat {
-  \super
-  \flat
-  ".50"
+  ".25"
 }
 
 \markup \wordwrap {
-  In this reference, partial numbers are listed to the right of each pitch,
-  and deviation from the written pitch (in twelve–tone equal temperament) is shown below, rounded to the nearest 5 cents.
-  Deviation may vary based on horn construction, as well as the player’s own preferences and anatomy.
+  In this reference,
+  fingerings for every pitch are arranged from shortest to longest tubing length.
+  Partial numbers are listed to the right of each note,
+  and deviation from the written pitch
+  (in twelve–tone equal temperament)
+  is shown below each fingering, rounded to the nearest 5 cents.
 }
 \markup \null
 \markup \wordwrap {
-  Fingerings for each pitch are arranged from shortest to longest tubing length.
-  Fingerings \concat { \fingerC , } \fingerAC and \fingerABC are assigned a bias of
-  5 cents flat, 10 cents sharp and 20 cents sharp, respectively.
+  This reference presumes that the slides of valve \fingerC are tuned to the \fingerBC combination.
+  As a result, fingerings \concat { \fingerC , } \fingerAC and \fingerABC are assigned a bias of
+  10 cents flat, 10 cents sharp and 20 cents sharp, respectively.
+  Deviation may vary based on horn construction,
+  as well as the player’s own preferences and anatomy.
   Uncommon fingerings are shown in black.
 }
 \score {
@@ -451,11 +449,11 @@ tuningFlatFifty = \markup
           \tuningFlatTen
           \tuningZero
           \tuningSharpFive
-          \tuningZero
+          \tuningFlatFive
           \tuningFlatFive
           \tuningFlatFifteen
           \tuningZero
-          \tuningFlatFive
+          \tuningFlatTen
           \tuningFlatTen
 
           % ees
@@ -469,18 +467,18 @@ tuningFlatFifty = \markup
           % d
           \tuningFlatTen
           \tuningZero
-          \tuningFlatFive
+          \tuningFlatTen
           \tuningSharpFive
           \tuningFlatFifteen
           \tuningSharpTen
 
           % cis
           \tuningFlatTen
-          \tuningFlatFifteen
+          \tuningFlatTwenty
           \tuningZero
           \tuningSharpFive
           \tuningFlatFifteen
-          \tuningFlatTwenty
+          \tuningFlatTwentyFive
           \tuningSharpTwenty
 
           % c
@@ -497,7 +495,7 @@ tuningFlatFifty = \markup
           \tuningFlatTen
           \tuningZero
           \tuningSharpFive
-          \tuningZero
+          \tuningFlatFive
           \tuningFlatFive
 
           % bes
@@ -512,18 +510,18 @@ tuningFlatFifty = \markup
           % a 
           \tuningFlatFifteen
           \tuningZero
-          \tuningFlatFive
+          \tuningFlatTen
           \tuningFlatTen
           \tuningFlatTen
           \tuningZero
-          \tuningFlatFive
+          \tuningFlatTen
           \tuningSharpFifteen
 
           % aes
           \tuningFlatFifteen
           \tuningZero
           \tuningFlatTen
-          \tuningFlatFifteen
+          \tuningFlatTwenty
           \tuningZero
 
           % g
@@ -537,7 +535,7 @@ tuningFlatFifty = \markup
           % fis
           \tuningSharpFive
           \tuningFlatFifteen
-          \tuningFlatTwenty
+          \tuningFlatTwentyFive
           \tuningSharpTwenty
           \tuningZero
           \tuningZero
