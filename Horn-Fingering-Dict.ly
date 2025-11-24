@@ -165,10 +165,11 @@ tuningFlatTwentyFive = \markup
     }
   }
   <<
-    \new PianoStaff \with { \remove "Time_signature_engraver" }
+    \new PianoStaff \with {
+      \remove "Time_signature_engraver"
+    }
     <<
-      \new Staff
-      <<
+      \new Staff <<
         \new Voice = "fingerings" \relative c'' {
           \accidentalStyle Score.forget
           \set Score.timing = ##f
@@ -180,11 +181,11 @@ tuningFlatTwentyFive = \markup
           \override Fingering.whiteout-style = #'rounded-box
 
           \clef treble
-          <f-8 f,-4>2
+          <f-8 f,-4 f,-2>2
           <f-9>4*2
           <f-10 f,-5>4*2
           \bar "!"
-          <f-12 f,-6>2
+          <f-12 f,-6 f,-3>2
           <f-14 f,-7>4*2
           <f-15>4*2
           \bar "|"
@@ -196,8 +197,8 @@ tuningFlatTwentyFive = \markup
           <e-10 e,-5>4*2
           \bar "!"
           <e-10 e,-5>2
-          <e-12 e,-6>2
-          <e-12 e,-6>4*2
+          <e-12 e,-6 e,-3>2
+          <e-12 e,-6 e,-3>4*2
           <e-14 e,-7>4*2
           \bar "|"
 
@@ -207,13 +208,13 @@ tuningFlatTwentyFive = \markup
           <ees-10 ees,-5>4*2
           \bar "!"
           <ees-10 ees,-5>2
-          <ees-12 ees,-6>2
+          <ees-12 ees,-6 ees,-3>2
           \bar "|"
           \break
 
           <d'-15>4*2
           <d-16>4*2
-          <d-16 d,-8 d,-4>4*2
+          <d-16 d,-8 d,-4 d,-2>4*2
           \bar "!"
           <d,-9>2
           <d-10>4*2
@@ -232,7 +233,7 @@ tuningFlatTwentyFive = \markup
 
           <c'-12 c,-6 c,-3>2
           <c-15>4*2
-          <c-16 c,-8 c,-4>4*2
+          <c-16 c,-8 c,-4 c,-2>4*2
           \bar "!"
           <c-16>4*2
           <c,-9>4*2
@@ -311,11 +312,11 @@ tuningFlatTwentyFive = \markup
 
           \clef treble
           s2 s s s s s
-          s2 <e-8 e,-4> s s s s s s s
-          s2 <ees-8 ees,-4> s s s s
-          s2 <d-8 d,-4> s s <d,-5> s
-          s2 s <cis'-8 cis,-4> s <cis,-5> s s
-          s2 s s <c'-8 c,-4> s s
+          s2 <e-8 e,-4 e,-2> s s s s s s s
+          s2 <ees-8 ees,-4 ees,-2> s s s s
+          s2 <d-8 d,-4 d,-2> s s <d,-5> <d,-5>
+          s2 s <cis''-8 cis,-4 cis,-2> s <cis,-5> s <cis,-3>
+          s2 s s <c''-8 c,-4 c,-2> s s
           s2 s s <b-8 b,-4> s s s
           s2 s s s <bes-8 bes,-4> s s
           s2 s s s s <a-8 a,-4> <a-8 a,-4>4*2 s
@@ -324,7 +325,9 @@ tuningFlatTwentyFive = \markup
           s2 <fis-5> <fis-5>4*2 s2 s s s
         }
       >>
-      \new Lyrics = "fingering"
+      \new Lyrics = "fingering" \with {
+        \consists Balloon_engraver
+      }
       \context Lyrics = "fingering" {
         \lyricsto "fingerings" {
           % f
@@ -336,11 +339,19 @@ tuningFlatTwentyFive = \markup
           \fingerLABC
 
           % e
+          \balloonGrobText #'LyricText #'(1 . 1) \markup {
+            \tiny \italic \concat {
+              "fingering (B"
+              \super \flat
+              " horn)"
+            }
+          }
           \fingerTO
           \fingerTB
           \fingerTAB
           \fingerTC
           \fingerTAC
+          \balloonGrobText #'LyricText #'(1 . 1.5) \markup { \tiny \italic "fingering (F horn)" }
           \fingerLO
           \fingerLAB
           \fingerLC
@@ -432,7 +443,9 @@ tuningFlatTwentyFive = \markup
           \fingerLABC
         }
       }
-      \new Lyrics = "tuning"
+      \new Lyrics = "tuning" \with {
+        \consists Balloon_engraver
+      }
       \context Lyrics = "tuning" {
         \lyricsto "fingerings" {
           \override Lyrics.LyricText.font-size = #-2
@@ -450,6 +463,7 @@ tuningFlatTwentyFive = \markup
           \tuningZero
           \tuningSharpFive
           \tuningFlatFive
+          \balloonGrobText #'LyricText #'(-1 . -1) \markup { \tiny \italic "tuning deviation" }
           \tuningFlatFive
           \tuningFlatFifteen
           \tuningZero
@@ -542,7 +556,9 @@ tuningFlatTwentyFive = \markup
           \tuningSharpTwenty
         }
       }
-      \new Staff
+      \new Staff \with {
+        \consists Balloon_engraver
+      }
       <<
         \new Voice = "fingeringc" \relative c {
           \accidentalStyle Score.forget
@@ -556,7 +572,13 @@ tuningFlatTwentyFive = \markup
 
           \clef bass
           <f-2 f,-1>2 s s <f-3> s s
-          s2 <e-2 e,-1> s s s s <e-3> <e-3>4*2 s2
+          s2 <e-2 e,-1> s s s s
+          \balloonGrobText #'NoteHead #'(-2 . -5) \markup { \tiny \italic "playable pitch (common fingering)" }
+          <e-3>
+          \balloonGrobText #'NoteHead #'(-5 . -7) \markup { \tiny \italic "playable pitch (uncommon fingering)" }
+          \balloonGrobText #'Fingering #'(2 . -6) \markup { \tiny \italic "partial number" }
+          \once \override Fingering.whiteout = ##f
+          <e-3>4*2 s2
           s2 <ees-2> s s s <ees-3>
           s2 <d-2> <d-2 d,-1>4*2 s2 s <d-3>
           s2 s <cis-2> s s s <cis-3>
